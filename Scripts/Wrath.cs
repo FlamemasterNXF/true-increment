@@ -14,7 +14,11 @@ public class Wrath : MonoBehaviour
 
     void Update()
     {
-        game.data.wrath = Pow(Log10(game.data.Matter + 1), 0.2) + 0.01;
+        if (game.data.isInDG[3])
+            game.data.wrath = Pow(Log10(game.data.Matter + 1), (0.3 + (game.data.dgCompletions[3] / 10))) + 0.01;
+        else
+            game.data.wrath = Pow(Log10(game.data.Matter + 1), (0.2 - (game.data.dgCompletions[3] / 25))) + 0.01;
+
         wrathText.text = $"The Titans divide your Matter Production by {Methods.NotationMethodBD(game.data.wrath, y: "F2")}";
     }
 }

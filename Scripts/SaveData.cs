@@ -27,9 +27,16 @@ public class SaveData
     #region TGT
     public bool startedTGT;
     #endregion
+    #region DGs
     public float[] dgCompletions = new float[5];
     public float[] dgMaxCompletions = new float[5];
     public bool[] isInDG = new bool[5];
+    public BigDouble[] dgCompletionRequirment = new BigDouble[5];
+    public bool mtAutoIsUnlocked;
+    public bool particleAutoIsUnlocked;
+    public bool tgtIsUnlocked;
+    public int previousDG;
+    #endregion
 
     public SaveData()
     {
@@ -81,18 +88,29 @@ public class SaveData
         #region TGT
         startedTGT = false;
         #endregion
+        #region DGs
         for (var i = 0; i < dgCompletions.Length; i++)
         {
             dgCompletions[i] = 0;
         }
-        dgMaxCompletions[0] = 20;
-        dgMaxCompletions[1] = 10;
-        dgMaxCompletions[2] = 3;
+        dgMaxCompletions[0] = 1;
+        dgMaxCompletions[1] = 1;
+        dgMaxCompletions[2] = 20;
         dgMaxCompletions[3] = 5;
         dgMaxCompletions[4] = 1;
+        dgCompletionRequirment[0] = 1e15;
+        dgCompletionRequirment[1] = 1e10;
+        dgCompletionRequirment[2] = 1e20;
+        dgCompletionRequirment[3] = 1e10;
+        dgCompletionRequirment[4] = 1e8;   
         for (var i = 0; i < isInDG.Length; i++)
         {
             isInDG[i] = false;
         }
+        mtAutoIsUnlocked = false;
+        particleAutoIsUnlocked = false;
+        tgtIsUnlocked = false;
+        previousDG = 6; //setting to six is the same as setting it to "no challenge"
+        #endregion 
     }
 }

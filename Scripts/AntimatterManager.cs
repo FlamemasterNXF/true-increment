@@ -34,7 +34,7 @@ public class AntimatterManager : MonoBehaviour
         if (game.data.Matter >= 1e8)
         {
             apocalypseButton.SetActive(true);
-        }   
+        }
         else
             apocalypseButton.SetActive(false);
     }
@@ -102,6 +102,10 @@ public class AntimatterManager : MonoBehaviour
 
     public void BuyAntiParticle(int PID)
     {
+        //DG Control
+        var data = game.data;
+        if (data.isInDG[0] || data.isInDG[1]) return;
+        //end
         if (game.data.antimatter < game.data.antiParticleCosts[PID - 1]) return;
         game.data.Matter -= game.data.antiParticleCosts[PID - 1];
         game.data.antiParticleUnlocked[PID - 1] = true;
